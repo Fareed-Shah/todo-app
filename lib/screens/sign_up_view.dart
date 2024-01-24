@@ -60,7 +60,9 @@ class SignUp extends StatelessWidget {
             ),
             AppButton(
               label: "Sign Up",
-              onPressed: () {},
+              onPressed: () {
+                
+              },
             )
           ],
         ),

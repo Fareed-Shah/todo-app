@@ -66,14 +66,21 @@ class _HomeViewState extends State<HomeView> {
               ),
             ),
             GestureDetector(
-              onTap: () {
-                Navigator.push<JobPost>(
+              onTap: () async {
+                JobPost? data = await Navigator.push<JobPost>(
                     context,
                     MaterialPageRoute(
                         builder: (_) => FormView(
                               title: items[index].title,
                               descrip: items[index].description,
+                              isEdit: true,
                             )));
+                if (data != null) {
+                  setState(() {
+                    items[index].title = data.title;
+                    items[index].description = data.description;
+                  });
+                }
               },
               child: const Icon(
                 Icons.edit,

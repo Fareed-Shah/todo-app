@@ -4,8 +4,9 @@ import 'package:job_post_app/classes/job_post.dart';
 class FormView extends StatefulWidget {
   final String? title;
   final String? descrip;
+  final bool? isEdit;
 
-  const FormView({super.key, this.title, this.descrip});
+  const FormView({super.key, this.title, this.descrip, this.isEdit});
 
   @override
   State<FormView> createState() => _FormViewState();
@@ -14,13 +15,14 @@ class FormView extends StatefulWidget {
 class _FormViewState extends State<FormView> {
   TextEditingController titleEditingController = TextEditingController();
   TextEditingController descriptionEditingController = TextEditingController();
-
+  bool edit = false;
   @override
   void initState() {
     super.initState();
     if (widget.title != null && widget.descrip != null) {
       titleEditingController.text = widget.title!;
       descriptionEditingController.text = widget.descrip!;
+      edit = widget.isEdit!;
     }
   }
 
@@ -86,9 +88,10 @@ class _FormViewState extends State<FormView> {
                     border: Border.all(color: Colors.black, width: 2.0),
                     borderRadius: BorderRadius.circular(15),
                     color: Colors.grey),
-                child: const Center(
-                  child: Text("Submit",
-                      style: TextStyle(color: Colors.black, fontSize: 20.0)),
+                child: Center(
+                  child: Text(edit ? "Update Record" : "Submit",
+                      style:
+                          const TextStyle(color: Colors.black, fontSize: 20.0)),
                 ),
               ),
             )
@@ -100,6 +103,6 @@ class _FormViewState extends State<FormView> {
 
   onSave(BuildContext context, String title, String descrip) {
     Navigator.pop(context, JobPost(title: title, description: descrip));
-    print(title);
+    // print(title);
   }
 }
