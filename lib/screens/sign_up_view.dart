@@ -2,9 +2,32 @@ import 'package:flutter/material.dart';
 import 'package:job_post_app/custom_widgets/app_button.dart';
 import 'package:job_post_app/custom_widgets/user_textfiled.dart';
 import 'package:job_post_app/screens/sign_in_view.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-class SignUp extends StatelessWidget {
+class SignUp extends StatefulWidget {
   const SignUp({super.key});
+
+  @override
+  State<SignUp> createState() => _SignUpState();
+}
+
+class _SignUpState extends State<SignUp> {
+  TextEditingController userNameController = TextEditingController();
+  String userName = "";
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    isLogin();
+  }
+
+  void isLogin() async {
+    SharedPreferences sp = await SharedPreferences.getInstance();
+    userName = sp.getString("user") ?? "fa";
+
+    setState(() {});
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -29,9 +52,29 @@ class SignUp extends StatelessWidget {
             const SizedBox(
               height: 47,
             ),
-            const UserTextField(placeholder: "Enter Your Full Name"),
-            const UserTextField(placeholder: "Enter Your Email Address"),
-            const UserTextField(placeholder: "Enter Your Password"),
+            // const UserTextField(placeholder: "Enter Your Full Name"),
+            // const UserTextField(placeholder: "Enter Your Email Address"),
+            // const UserTextField(placeholder: "Enter Your Password"),
+            Text(
+              userName,
+              style: const TextStyle(color: Colors.white),
+            ),
+            Container(
+              margin: const EdgeInsets.only(top: 20, right: 27),
+              padding: const EdgeInsets.all(5),
+              decoration: BoxDecoration(
+                  border: Border.all(color: const Color(0xff5D5D67)),
+                  borderRadius: BorderRadius.circular(15),
+                  color: const Color(0xff1E1C24)),
+              child: TextFormField(
+                controller: userNameController,
+                style: const TextStyle(color: Colors.grey, fontSize: 15),
+                decoration: const InputDecoration(
+                    hintText: "Enter User Name",
+                    hintStyle: TextStyle(color: Colors.grey, fontSize: 15),
+                    border: InputBorder.none),
+              ),
+            ),
             const Spacer(),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -60,8 +103,11 @@ class SignUp extends StatelessWidget {
             ),
             AppButton(
               label: "Sign Up",
-              onPressed: () {
-                
+              onPressed: () async {
+                SharedPreferences sp = await SharedPreferences.getInstance();
+                sp.setString("user", userNameController.text);
+                userName = sp.getString('user') ?? "";
+                setState(() {});
               },
             )
           ],

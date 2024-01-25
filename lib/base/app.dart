@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:job_post_app/screens/sign_up_view.dart';
+import 'package:job_post_app/screens/home_view.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -8,7 +8,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: SignUp(),
+      home: HomeView(),
     );
   }
 }
