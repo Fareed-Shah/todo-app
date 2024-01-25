@@ -1,8 +1,8 @@
 # job_post_app
 
 A new Flutter project.
-![todo-app](https://github.com/Fareed-Shah/todo-app/assets/77167320/1182eaa1-91a4-4fc8-84f0-475ba47f5943)
 
+<img src="https://github.com/Fareed-Shah/todo-app/assets/77167320/1182eaa1-91a4-4fc8-84f0-475ba47f5943"  width="500" height="600">
 ## Getting Started
 
 This project is a starting point for a Flutter application.
