@@ -3,7 +3,6 @@ import 'package:job_post_app/custom_widgets/app_button.dart';
 import 'package:job_post_app/custom_widgets/user_textfiled.dart';
 import 'package:job_post_app/screens/sign_up_view.dart';
 
-
 class SignIn extends StatelessWidget {
   const SignIn({super.key});
 
@@ -30,8 +29,8 @@ class SignIn extends StatelessWidget {
             const SizedBox(
               height: 47,
             ),
-            const UserTextField(placeholder: "Enter Your Email Address"),
-            const UserTextField(placeholder: "Enter Your Password"),
+            // const UserTextField(placeholder: "Enter Your Email Address"),
+            // const UserTextField(placeholder: "Enter Your Password"),
             const Spacer(),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -39,7 +38,6 @@ class SignIn extends StatelessWidget {
                 const Text(
                   "Dont have an account? ",
                   style: TextStyle(color: Colors.white, fontSize: 12),
-                  
                 ),
                 GestureDetector(
                   onTap: () {
@@ -59,7 +57,10 @@ class SignIn extends StatelessWidget {
             const SizedBox(
               height: 11,
             ),
-             AppButton(label: "Sign In",onPressed: (){},)
+            AppButton(
+              label: "Sign In",
+              onPressed: () {},
+            )
           ],
         ),
       ),

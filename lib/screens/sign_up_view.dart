@@ -13,6 +13,7 @@ class SignUp extends StatefulWidget {
 
 class _SignUpState extends State<SignUp> {
   TextEditingController userNameController = TextEditingController();
+  TextEditingController userEmailController = TextEditingController();
   String userName = "";
 
   @override
@@ -52,29 +53,36 @@ class _SignUpState extends State<SignUp> {
             const SizedBox(
               height: 47,
             ),
-            // const UserTextField(placeholder: "Enter Your Full Name"),
+            UserTextField(
+              placeholder: "Enter Your Full Name",
+              userTextField: userNameController,
+            ),
+            UserTextField(
+              placeholder: "Enter Email",
+              userTextField: userEmailController,
+            ),
             // const UserTextField(placeholder: "Enter Your Email Address"),
             // const UserTextField(placeholder: "Enter Your Password"),
             Text(
               userName,
               style: const TextStyle(color: Colors.white),
             ),
-            Container(
-              margin: const EdgeInsets.only(top: 20, right: 27),
-              padding: const EdgeInsets.all(5),
-              decoration: BoxDecoration(
-                  border: Border.all(color: const Color(0xff5D5D67)),
-                  borderRadius: BorderRadius.circular(15),
-                  color: const Color(0xff1E1C24)),
-              child: TextFormField(
-                controller: userNameController,
-                style: const TextStyle(color: Colors.grey, fontSize: 15),
-                decoration: const InputDecoration(
-                    hintText: "Enter User Name",
-                    hintStyle: TextStyle(color: Colors.grey, fontSize: 15),
-                    border: InputBorder.none),
-              ),
-            ),
+            // Container(
+            //   margin: const EdgeInsets.only(top: 20, right: 27),
+            //   padding: const EdgeInsets.all(5),
+            //   decoration: BoxDecoration(
+            //       border: Border.all(color: const Color(0xff5D5D67)),
+            //       borderRadius: BorderRadius.circular(15),
+            //       color: const Color(0xff1E1C24)),
+            //   child: TextFormField(
+            //     controller: userNameController,
+            //     style: const TextStyle(color: Colors.grey, fontSize: 15),
+            //     decoration: const InputDecoration(
+            //         hintText: "Enter User Name",
+            //         hintStyle: TextStyle(color: Colors.grey, fontSize: 15),
+            //         border: InputBorder.none),
+            //   ),
+            // ),
             const Spacer(),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -104,10 +112,10 @@ class _SignUpState extends State<SignUp> {
             AppButton(
               label: "Sign Up",
               onPressed: () async {
-                SharedPreferences sp = await SharedPreferences.getInstance();
-                sp.setString("user", userNameController.text);
-                userName = sp.getString('user') ?? "";
-                setState(() {});
+                // SharedPreferences sp = await SharedPreferences.getInstance();
+                // sp.setString("user", userNameController.text);
+                // userName = sp.getString('user') ?? "";
+                // setState(() {});
               },
             )
           ],
