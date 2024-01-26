@@ -3,9 +3,16 @@ import 'package:job_post_app/custom_widgets/app_button.dart';
 import 'package:job_post_app/custom_widgets/user_textfiled.dart';
 import 'package:job_post_app/screens/sign_up_view.dart';
 
-class SignIn extends StatelessWidget {
+class SignIn extends StatefulWidget {
   const SignIn({super.key});
 
+  @override
+  State<SignIn> createState() => _SignInState();
+}
+
+class _SignInState extends State<SignIn> {
+  TextEditingController emailEditingController = TextEditingController();
+  TextEditingController passwordEditingController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,6 +38,12 @@ class SignIn extends StatelessWidget {
             ),
             // const UserTextField(placeholder: "Enter Your Email Address"),
             // const UserTextField(placeholder: "Enter Your Password"),
+            UserTextField(
+                placeholder: "Enter register email",
+                textEditingController: emailEditingController),
+            UserTextField(
+                placeholder: "Enter your password",
+                textEditingController: passwordEditingController),
             const Spacer(),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,

@@ -23,6 +23,14 @@ class _HomeViewState extends State<HomeView> {
         ),
         centerTitle: true,
         backgroundColor: Colors.black,
+        actions: [
+          IconButton(
+              onPressed: () {},
+              icon: const Icon(
+                Icons.logout,
+                color: Colors.white,
+              ))
+        ],
       ),
 
       body: ListView.builder(

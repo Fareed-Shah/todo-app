@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:job_post_app/custom_widgets/app_button.dart';
 import 'package:job_post_app/custom_widgets/user_textfiled.dart';
+import 'package:job_post_app/screens/home_view.dart';
 import 'package:job_post_app/screens/sign_in_view.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -12,23 +13,15 @@ class SignUp extends StatefulWidget {
 }
 
 class _SignUpState extends State<SignUp> {
-  TextEditingController userNameController = TextEditingController();
-  TextEditingController userEmailController = TextEditingController();
-  String userName = "";
+  TextEditingController nameEditingController = TextEditingController();
+  TextEditingController emailEditingController = TextEditingController();
+  TextEditingController passwordEditingController = TextEditingController();
 
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    isLogin();
-  }
-
-  void isLogin() async {
-    SharedPreferences sp = await SharedPreferences.getInstance();
-    userName = sp.getString("user") ?? "fa";
-
-    setState(() {});
-  }
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   userCreation();
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -36,8 +29,8 @@ class _SignUpState extends State<SignUp> {
       backgroundColor: Colors.black87,
       body: Padding(
         padding: const EdgeInsets.only(top: 67, left: 27),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+        child: ListView(
+          // crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const Text(
               "Let's sign you up",
@@ -54,35 +47,17 @@ class _SignUpState extends State<SignUp> {
               height: 47,
             ),
             UserTextField(
-              placeholder: "Enter Your Full Name",
-              userTextField: userNameController,
+              placeholder: "Enter Your full name",
+              textEditingController: nameEditingController,
             ),
             UserTextField(
-              placeholder: "Enter Email",
-              userTextField: userEmailController,
+              placeholder: "Enter your email",
+              textEditingController: emailEditingController,
             ),
-            // const UserTextField(placeholder: "Enter Your Email Address"),
-            // const UserTextField(placeholder: "Enter Your Password"),
-            Text(
-              userName,
-              style: const TextStyle(color: Colors.white),
+            UserTextField(
+              placeholder: "Enter your password",
+              textEditingController: passwordEditingController,
             ),
-            // Container(
-            //   margin: const EdgeInsets.only(top: 20, right: 27),
-            //   padding: const EdgeInsets.all(5),
-            //   decoration: BoxDecoration(
-            //       border: Border.all(color: const Color(0xff5D5D67)),
-            //       borderRadius: BorderRadius.circular(15),
-            //       color: const Color(0xff1E1C24)),
-            //   child: TextFormField(
-            //     controller: userNameController,
-            //     style: const TextStyle(color: Colors.grey, fontSize: 15),
-            //     decoration: const InputDecoration(
-            //         hintText: "Enter User Name",
-            //         hintStyle: TextStyle(color: Colors.grey, fontSize: 15),
-            //         border: InputBorder.none),
-            //   ),
-            // ),
             const Spacer(),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -112,8 +87,14 @@ class _SignUpState extends State<SignUp> {
             AppButton(
               label: "Sign Up",
               onPressed: () async {
-                // SharedPreferences sp = await SharedPreferences.getInstance();
-                // sp.setString("user", userNameController.text);
+                Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (_) => const HomeView()));
+                SharedPreferences sp = await SharedPreferences.getInstance();
+                sp.setString("name", nameEditingController.text);
+                sp.setString("email", emailEditingController.text);
+                sp.setString("password", passwordEditingController.text);
+                sp.setBool('isLogin', true);
+
                 // userName = sp.getString('user') ?? "";
                 // setState(() {});
               },
