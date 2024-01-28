@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:job_post_app/classes/job_post.dart';
 import 'package:job_post_app/screens/form_view.dart';
+import 'package:job_post_app/screens/sign_in_view.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({super.key});
@@ -11,6 +13,7 @@ class HomeView extends StatefulWidget {
 
 class _HomeViewState extends State<HomeView> {
   List<JobPost> items = [];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,9 +27,14 @@ class _HomeViewState extends State<HomeView> {
         centerTitle: true,
         backgroundColor: Colors.black,
         actions: [
-          IconButton(
-              onPressed: () {},
-              icon: const Icon(
+          GestureDetector(
+              onTap: () async {
+                Navigator.pushReplacement(context,
+                    MaterialPageRoute(builder: ((context) => const SignIn())));
+                SharedPreferences sp = await SharedPreferences.getInstance();
+                sp.clear();
+              },
+              child: const Icon(
                 Icons.logout,
                 color: Colors.white,
               ))

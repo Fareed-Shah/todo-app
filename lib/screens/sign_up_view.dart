@@ -28,7 +28,7 @@ class _SignUpState extends State<SignUp> {
     return Scaffold(
       backgroundColor: Colors.black87,
       body: Padding(
-        padding: const EdgeInsets.only(top: 67, left: 27),
+        padding: const EdgeInsets.only(top: 67, left: 27, right: 27),
         child: ListView(
           // crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -58,7 +58,9 @@ class _SignUpState extends State<SignUp> {
               placeholder: "Enter your password",
               textEditingController: passwordEditingController,
             ),
-            const Spacer(),
+            const SizedBox(
+              height: 100,
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [

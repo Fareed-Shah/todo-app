@@ -18,9 +18,8 @@ class _SignInState extends State<SignIn> {
     return Scaffold(
       backgroundColor: Colors.black87,
       body: Padding(
-        padding: const EdgeInsets.only(top: 67, left: 27),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+        padding: const EdgeInsets.only(top: 67, left: 27, right: 27),
+        child: ListView(
           children: [
             const Text(
               "Let's sign you in",
@@ -44,7 +43,9 @@ class _SignInState extends State<SignIn> {
             UserTextField(
                 placeholder: "Enter your password",
                 textEditingController: passwordEditingController),
-            const Spacer(),
+            const SizedBox(
+              height: 100.0,
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
