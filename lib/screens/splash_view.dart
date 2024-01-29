@@ -26,13 +26,14 @@ class _SplashViewState extends State<SplashView> {
     sp.getString('email');
     sp.getString('password');
     isLogedin = sp.getBool('isLogin') ?? false;
+    //
     if (isLogedin) {
-      Timer(const Duration(seconds: 5), () {
+      Future.delayed(const Duration(seconds: 3), () {
         Navigator.pushReplacement(
             context, MaterialPageRoute(builder: (_) => const HomeView()));
       });
     } else {
-      Timer(const Duration(seconds: 5), () {
+      Future.delayed(const Duration(seconds: 3), () {
         Navigator.pushReplacement(
             context, MaterialPageRoute(builder: (_) => const SignUp()));
       });

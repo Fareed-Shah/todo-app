@@ -13,15 +13,28 @@ class HomeView extends StatefulWidget {
 
 class _HomeViewState extends State<HomeView> {
   List<JobPost> items = [];
+  String userName = "";
+
+  @override
+  void initState() {
+    super.initState();
+    userInfo();
+  }
+
+  userInfo() async {
+    SharedPreferences sp = await SharedPreferences.getInstance();
+    userName = sp.getString('name') ?? "";
+    setState(() {});
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       // backgroundColor: Colors.black,
       appBar: AppBar(
-        title: const Text(
-          'Home',
-          style: TextStyle(
+        title: Text(
+          userName,
+          style: const TextStyle(
               fontWeight: FontWeight.bold, fontSize: 30.0, color: Colors.white),
         ),
         centerTitle: true,
