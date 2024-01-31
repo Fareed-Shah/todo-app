@@ -41,11 +41,46 @@ class _HomeViewState extends State<HomeView> {
         backgroundColor: Colors.black,
         actions: [
           GestureDetector(
-              onTap: () async {
-                Navigator.pushReplacement(context,
-                    MaterialPageRoute(builder: ((context) => const SignIn())));
-                SharedPreferences sp = await SharedPreferences.getInstance();
-                sp.clear();
+              onTap: () {
+                showDialog(
+                    barrierDismissible: false,
+                    context: context,
+                    builder: (ctx) => AlertDialog(
+                          backgroundColor: Colors.blue,
+                          title: const Text(
+                            'Sign Out?',
+                            style: TextStyle(
+                                fontSize: 16, fontWeight: FontWeight.bold),
+                          ),
+                          actions: [
+                            TextButton(
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                },
+                                child: const Text('No',
+                                    style: TextStyle(
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.black))),
+                            TextButton(
+                                onPressed: () async {
+                                  Navigator.pushReplacement(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: ((context) =>
+                                              const SignIn())));
+                                  SharedPreferences sp =
+                                      await SharedPreferences.getInstance();
+                                  sp.clear();
+                                },
+                                child: const Text('Yes',
+                                    style: TextStyle(
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.black))),
+                          ],
+                          // elevation: 24.0,
+                        ));
               },
               child: const Icon(
                 Icons.logout,
